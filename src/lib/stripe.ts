@@ -1,10 +1,13 @@
 import "server-only";
 import Stripe from "stripe";
 import type { Order } from "@/db/schema";
-import { env } from "./env";
+import { env, isProduction } from "./env";
 import { CHECKOUT_SESSION_TTL_MS } from "./orders";
 
 export const stripe = env.STRIPE_SECRET_KEY ? new Stripe(env.STRIPE_SECRET_KEY) : null;
+
+// Sans Stripe, le paiement est simulé hors production, ou en CI sur demande explicite.
+export const simulatedPayment = !stripe && (!isProduction || env.SIMULATED_PAYMENT);
 
 type Line = { productName: string; variantLabel: string; unitPriceCents: number; quantity: number };
 

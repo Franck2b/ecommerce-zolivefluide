@@ -22,9 +22,9 @@ Comptes de démonstration (créés par le seed, environnement local uniquement) 
 | Admin  | `admin@affut-apnee.test`  | `affut-admin-2026`  |
 | Client | `client@affut-apnee.test` | `affut-client-2026` |
 
-Sans clé Stripe, le paiement passe par une page de **paiement simulé** (désactivée en production). Pour tester Stripe en mode test : renseigner `STRIPE_SECRET_KEY`, puis `stripe listen --forward-to localhost:3000/api/stripe/webhook` et copier le secret dans `STRIPE_WEBHOOK_SECRET`.
+Sans clé Stripe, le paiement passe par une page de **paiement simulé**, désactivée en production sauf si `SIMULATED_PAYMENT=true` (réservé à la CI et à la démo Docker locale, qui tournent sur le build de production). Pour tester Stripe en mode test : renseigner `STRIPE_SECRET_KEY`, puis `stripe listen --forward-to localhost:3000/api/stripe/webhook` et copier le secret dans `STRIPE_WEBHOOK_SECRET`.
 
-Tout en conteneurs (app sur http://localhost:3001) :
+Tout en conteneurs (app sur http://localhost:3000, paiement simulé si aucune clé Stripe n'est fournie) :
 
 ```bash
 docker compose --profile full up --build

@@ -3,10 +3,9 @@ import { notFound, redirect } from "next/navigation";
 import { Suspense } from "react";
 import { cancelOrder, simulatePayment } from "@/actions/checkout";
 import { requireUser } from "@/lib/auth";
-import { isProduction } from "@/lib/env";
 import { formatPrice } from "@/lib/format";
 import { getUserOrder } from "@/lib/orders";
-import { stripe } from "@/lib/stripe";
+import { simulatedPayment } from "@/lib/stripe";
 
 export const metadata: Metadata = { title: "Paiement", robots: { index: false } };
 
@@ -21,7 +20,7 @@ export default function PaymentPage({ params }: PageProps<"/commande/[reference]
 }
 
 async function SimulatedPayment({ params }: { params: PageProps<"/commande/[reference]/paiement">["params"] }) {
-  if (isProduction || stripe) notFound();
+  if (!simulatedPayment) notFound();
   const { reference } = await params;
   const user = await requireUser(`/commande/${reference}/paiement`);
   const order = await getUserOrder(user.id, reference);
