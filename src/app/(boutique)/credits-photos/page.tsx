@@ -8,7 +8,7 @@ export default function CreditsPage() {
   return (
     <ProsePage title="Crédits photos">
       <p>
-        Les packshots produits et les deux photos de la page d&apos;accueil ont été générés pour ce projet. Les
+        Les packshots produits ont été générés pour ce projet ; les deux photos de la page d&apos;accueil ont été fournies par l&apos;équipe. Les
         photos ci-dessous sont publiées sous licence libre ; merci à leurs auteurs.
       </p>
       <ul className="divide-y divide-line border-y border-line">

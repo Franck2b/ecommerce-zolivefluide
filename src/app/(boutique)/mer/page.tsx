@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function Page({ searchParams }: PageProps<"/mer">) {
   return (
     <>
-      <PageBanner title={universes.mer.label} text={universes.mer.pitch} image="/images/ambiance/hero-mer.jpg" eyebrow="Apnée, roches, pleine eau" />
+      <PageBanner title={universes.mer.label} text={universes.mer.pitch} image="/images/ambiance/hero-surface.jpg" eyebrow="Apnée, roches, pleine eau" />
       <div className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
         <Suspense fallback={<CatalogSkeleton />}>
           <CatalogListing searchParams={searchParams} basePath="/mer" universe="mer" />

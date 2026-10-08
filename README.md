@@ -77,4 +77,4 @@ tests/  e2e/        Vitest et Playwright
 
 ## Crédits
 
-Packshots et photos du hero générés pour le projet ; autres photos sous licence libre, listées sur la page `/credits-photos`.
+Packshots générés pour le projet, photos du hero fournies ; autres photos sous licence libre, listées sur la page `/credits-photos`.

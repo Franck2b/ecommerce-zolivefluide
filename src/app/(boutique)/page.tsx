@@ -8,9 +8,10 @@ import { universe as universeEnum } from "@/db/schema";
 import { getCategories, getFeatured } from "@/lib/catalog";
 import { universes } from "@/lib/format";
 
+// Photos en paysage dans des moitiés d'écran en portrait : le cadrage suit le sujet.
 const universeImages = {
-  foret: "/images/ambiance/hero-chasse.jpg",
-  mer: "/images/ambiance/hero-mer.jpg",
+  foret: { src: "/images/ambiance/hero-battue.jpg", position: "object-[62%_50%]" },
+  mer: { src: "/images/ambiance/hero-surface.jpg", position: "object-[55%_50%]" },
 } as const;
 
 export default function HomePage() {
@@ -24,12 +25,12 @@ export default function HomePage() {
             className="group relative flex min-h-[26rem] items-end overflow-hidden bg-ink md:min-h-[38rem]"
           >
             <Image
-              src={universeImages[universe]}
+              src={universeImages[universe].src}
               alt=""
               fill
               priority
               sizes="(min-width: 768px) 50vw, 100vw"
-              className="object-cover opacity-80 transition-transform duration-700 group-hover:scale-105"
+              className={`object-cover opacity-80 transition-transform duration-700 group-hover:scale-105 ${universeImages[universe].position}`}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
             <div className="relative p-6 text-paper sm:p-10">
