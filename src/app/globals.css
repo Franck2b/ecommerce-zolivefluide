@@ -1,0 +1,187 @@
+@import "tailwindcss";
+
+/*
+  Affût & Apnée — équipementier chasse et chasse sous-marine.
+  Palette sourde de terrain (forêt, kaki, sable) ; l'orange de sécurité est réservé
+  aux actions d'achat et aux promotions, comme sur le terrain où il signale l'essentiel.
+*/
+@theme {
+  --color-ink: #1a1f1b;
+  --color-ink-soft: #454b45;
+  --color-muted: #6a6f68;
+  --color-forest: #1f2b23;
+  --color-forest-soft: #2e3d33;
+  --color-khaki: #7d7556;
+  --color-sand: #e8e4da;
+  --color-stone: #f4f3ef;
+  --color-paper: #ffffff;
+  --color-line: #dcd9d0;
+  --color-abyss: #0e2a36;
+  --color-sea: #1e5a6b;
+  --color-blaze: #c4500f;
+  --color-blaze-deep: #a3420c;
+  --color-blaze-tint: #fbe9df;
+  --color-danger: #b42318;
+  --color-danger-tint: #fdecea;
+  --color-success: #2e6930;
+  --color-success-tint: #e6f2e2;
+
+  --font-display: var(--font-barlow-condensed), "Arial Narrow", sans-serif;
+  --font-sans: var(--font-barlow), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-stone);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+
+  ::selection {
+    background: var(--color-khaki);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-blaze);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0 1.25rem;
+    border-radius: 2px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition:
+      background-color 150ms,
+      color 150ms,
+      border-color 150ms;
+    white-space: nowrap;
+  }
+  .btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  .btn-primary {
+    background: var(--color-blaze);
+    color: var(--color-paper);
+  }
+  .btn-primary:hover:not(:disabled) {
+    background: var(--color-blaze-deep);
+  }
+  .btn-dark {
+    background: var(--color-forest);
+    color: var(--color-paper);
+  }
+  .btn-dark:hover:not(:disabled) {
+    background: var(--color-forest-soft);
+  }
+  .btn-secondary {
+    border: 1px solid currentColor;
+    color: inherit;
+  }
+  .btn-secondary:hover:not(:disabled) {
+    background: color-mix(in oklab, currentColor 8%, transparent);
+  }
+  .btn-ghost {
+    color: inherit;
+    padding: 0 0.75rem;
+  }
+  .btn-ghost:hover:not(:disabled) {
+    background: color-mix(in oklab, currentColor 8%, transparent);
+  }
+
+  .panel {
+    border: 1px solid var(--color-line);
+    border-radius: 4px;
+    background: var(--color-paper);
+  }
+
+  .field {
+    display: block;
+    width: 100%;
+    min-height: 2.75rem;
+    padding: 0.5rem 0.875rem;
+    border: 1px solid var(--color-line);
+    border-radius: 2px;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    transition: border-color 150ms;
+  }
+  .field:hover {
+    border-color: var(--color-muted);
+  }
+  .field:focus-visible {
+    outline: none;
+    border-color: var(--color-ink);
+    box-shadow: 0 0 0 1px var(--color-ink);
+  }
+  .field[aria-invalid="true"] {
+    border-color: var(--color-danger);
+  }
+
+  .label {
+    display: block;
+    margin-bottom: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-khaki);
+  }
+
+  .heading {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    line-height: 0.95;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
